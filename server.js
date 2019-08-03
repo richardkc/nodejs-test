@@ -22,14 +22,39 @@ var server = http.createServer(function(request, response){
   console.log('方方说：含查询字符串的路径\n' + pathWithQuery)
 
   if(path === '/'){
-    response.statusCode = 200
+    var string = fs.readFileSync('./index.html','utf8')
+    var amount = fs.readFileSync('./db','utf8')
+
+    string = string.replace('&&&amount&&&',amount)
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
-    response.write('哈哈哈')
+    response.write(string)
     response.end()
-  }else{
+  }else if(path === '/style.css'){
+      var string = fs.readFileSync('./style.css','utf8')
+      response.setHeader('content-Type','text/css')
+      response.write(string)
+      response.end()
+  }else if(path === '/main.js'){
+    var string = fs.readFileSync('./main.js','utf8')
+    response.setHeader('content-Type','application/javascript')
+    response.write(string)
+    response.end()
+}else if(path === '/pay'){
+    var amount = fs.readFileSync('./db','utf8')
+    var newAmount = amount - 1
+    if(Math.random()>0.5){
+      fs.writeFileSync('./db',newAmount)
+      response.setHeader('Content-Type','application/javascript')
+      response.statusCode = 200
+      response.write('amount.innerText = amount.innerText - 1')
+    }else{
+      response.statusCode = 404
+    }
+    response.end()
+}else{
     response.statusCode = 404
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
-    response.write('呜呜呜')
+    response.write('找不到对应的路径，你需要自行修改 index.js')
     response.end()
   }
 

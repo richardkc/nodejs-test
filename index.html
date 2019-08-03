@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h5>您的账户余额是 <span id="amount">&&&amount&&&</span></h5>
+    <!-- <form action="/pay" method="post" target="result">
+        <input type="submit" value="付款">
+    </form>
+    <iframe name="result" src="about:blank" frameborder="0" height="200[x"></iframe> -->
+
+    <!-- 使用script标签用img创建请求： -->
+    <button id="button">一元买教训</button>
+    <script>
+        button.addEventListener('click', (e) => {
+            let script = document.createElement('script')
+            script.src = '/pay'
+            document.body.appendChild(script)
+            script.onload = function(e){
+                e.currentTarget.remove()
+            }
+            script.onerror = function(e){
+                e.currentTarget.remove()
+                alert('fail')
+            }
+        })
+        /*
+    button.addEventListener('click',(e) => {
+        let image = document.createElement('img')
+        image.src = '/pay'
+        image.onload = function(){
+            alert('支付成功')
+            // window.location.reload()  //刷新本地页面
+            amount.innerText = amount.innerText - 1
+        }
+        image.onerror = function(){
+            alert('支付失败')
+        }
+    })*/
+    </script>
+    <script src="./main.js"></script>
+</body>
+</html>
