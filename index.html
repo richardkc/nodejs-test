@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/default.css">
 </head>
 <body>
     <h5>您的账户余额是 <span id="amount">&&&amount&&&</span></h5>
@@ -14,33 +14,31 @@
 
     <!-- 使用script标签用img创建请求： -->
     <button id="button">一元买教训</button>
-    <script>
-        button.addEventListener('click', (e) => {
-            let script = document.createElement('script')
-            script.src = '/pay'
-            document.body.appendChild(script)
-            script.onload = function(e){
-                e.currentTarget.remove()
-            }
-            script.onerror = function(e){
-                e.currentTarget.remove()
-                alert('fail')
-            }
-        })
-        /*
-    button.addEventListener('click',(e) => {
-        let image = document.createElement('img')
-        image.src = '/pay'
-        image.onload = function(){
-            alert('支付成功')
-            // window.location.reload()  //刷新本地页面
-            amount.innerText = amount.innerText - 1
-        }
-        image.onerror = function(){
-            alert('支付失败')
-        }
-    })*/
-    </script>
-    <script src="./main.js"></script>
+    <h1>你的密码是： __password__</h1>
+
+
+
+
+
+     <script>
+         
+
+
+        
+    // button.addEventListener('click',(e) => {
+    //     let image = document.createElement('img')
+    //     image.src = '/pay'
+    //     image.onload = function(){
+    //         alert('支付成功')
+    //         // window.location.reload()  //刷新本地页面
+    //         amount.innerText = amount.innerText - 1
+    //     }
+    //     image.onerror = function(){
+    //         alert('支付失败')
+    //     }
+    // })
+    </script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

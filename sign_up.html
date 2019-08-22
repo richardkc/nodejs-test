@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    <link rel="stylesheet" href="./css/sign_up.css">
+</head>
+
+<body>
+
+    <div class="form-wrapper">
+        <h2>注册</h2>
+        <form id="signUpForm">
+            <div class="row">
+                <label for="email">邮箱</label>
+                <input type="text" name="email" id="email">
+                <span class="error"></span>
+            </div>
+            <div class="row">
+                <label for="password">密码</label>
+                <input type="password" name="password" id="password">
+                <span class="error"></span>
+            </div>
+            <div class="row">
+                <label for="password_confirmation">确认密码</label>
+                <input type="password" name="password_confirmation" id="password_confirmation">
+                <span class="error"></span>
+            </div>
+            <div class="row">
+                <input type="submit" value="注册">
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./js/sign_up.js"></script>
+</body>
+
+</html>
