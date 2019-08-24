@@ -2,7 +2,9 @@ var http = require('http')
 var fs = require('fs')
 var url = require('url')
 var port = process.argv[2]
-let sessions = {}
+var sessions = {}
+var md5 = require('md5')
+
 
 if (!port) {
   console.log('请指定端口号好不啦？\nnode server.js 8888 这样不会吗？')
@@ -26,6 +28,10 @@ var server = http.createServer(function (request, response) {
     var string = fs.readFileSync('./index.html', 'utf8')
     var amount = fs.readFileSync('./data', 'utf8')
     let cookies = ''
+    // response.setHeader('Content-Type','application/javascript;charset=utf8')   //新版设置缓存
+    // response.setHeader('Expires','Sun, 04 Feb 2020 14:40:05 GM')   //旧版设置缓存
+
+
     if(request.headers.cookie){
       cookies = request.headers.cookie.split(';')   //['email=...,'a=1','b=2']
     }
@@ -211,9 +217,17 @@ var server = http.createServer(function (request, response) {
     response.end()
   } else if (path === '/js/main.js') {
     var string = fs.readFileSync('./js/main.js', 'utf8')
+    let fileMd5 = md5(string)
+    response.setHeader('ETag',fileMd5)
     response.setHeader('content-Type', 'application/javascript')
-    response.write(string)
-    response.end()
+    if(request.headers['if-none-match'] === fileMd5){
+      //没有响应体
+      response.statusCode = 304
+    }else{
+      //有响应体
+      response.write(string)
+    }
+    response.end()  
   } else if (path === '/pay') {
     var amount = fs.readFileSync('./data', 'utf8')
     var newAmount = amount - 1

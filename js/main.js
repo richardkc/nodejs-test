@@ -1,7 +1,7 @@
 
 $('#button').on('click',(e) => {
     $.ajax({
-        url: "http://localhost:8888/pay",
+        url: "./pay",
         dataType: "jsonp",
         success: function (response) {
             if (response === 'success') {
@@ -26,7 +26,7 @@ $('#button').on('click',(e) => {
 //         } else {
 //         }
 //     }       
-//     script.src = 'http://localhost:8888/pay?callback=' + functionName
+//     script.src = './pay?callback=' + functionName
 //     document.body.appendChild(script)
 //     script.onload = function (e) {
 //         e.currentTarget.remove()
